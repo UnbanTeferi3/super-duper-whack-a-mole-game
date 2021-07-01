@@ -5,10 +5,15 @@ using UnityEngine;
 public class BGScroller : MonoBehaviour
 {
 
-    [Range(-1f, 1f)] public float scrollSpeed;
+    [SerializeField] [Range(-1f, 1f)] private float _scrollSpeed;
+    public float ScrollSpeed { get => _scrollSpeed; set => _scrollSpeed = value; }
 
-    private float offSet;
-    private Material mat;
+    [SerializeField] private float offSet;
+    [SerializeField] private Material mat;
+
+    
+
+
 
     // Start is called before the first frame update
     void Start()
@@ -20,7 +25,7 @@ public class BGScroller : MonoBehaviour
     void Update()
     {
         
-        offSet += (Time.deltaTime*scrollSpeed) / 10f;
+        offSet += (Time.deltaTime*ScrollSpeed) / 10f;
         mat.SetTextureOffset("_MainTex", new Vector2(0, offSet));
 
 

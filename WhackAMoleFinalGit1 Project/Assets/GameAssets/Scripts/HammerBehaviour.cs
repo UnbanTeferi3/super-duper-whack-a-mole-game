@@ -108,7 +108,8 @@ public class HammerBehaviour : MonoBehaviour
 
             OnMoleHit?.Invoke();//Broadcast event/delegate
             comboSystem.AddCombo();
-            comboSystem.comboTime = comboSystem.comboStartTime;
+            Debug.Log("AddCombo() executed!");
+            comboSystem.ComboTime = comboSystem.ComboStartTime;
             //other.GetComponent<MoleBehaviour>().hasBeenHit = true;
 
         }

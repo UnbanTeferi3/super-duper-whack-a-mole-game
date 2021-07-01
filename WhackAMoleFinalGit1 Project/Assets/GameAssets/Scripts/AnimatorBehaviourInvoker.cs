@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class AnimatorBehaviourInvoker : MonoBehaviour
 {
-    public GameObject scriptGameObject;
+    [SerializeField] private GameObject scriptGameObject;
 
     // Start is called before the first frame update
     void Start()

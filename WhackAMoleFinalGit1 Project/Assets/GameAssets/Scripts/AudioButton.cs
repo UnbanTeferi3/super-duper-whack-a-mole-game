@@ -5,11 +5,11 @@ using UnityEngine.UI;
 
 public class AudioButton : MonoBehaviour
 {
-    public bool audioON = true;
-    public Image buttonImage;
-    public Sprite audioOnIMG;
-    public Sprite audioOffIMG;
-    public GameObject cameraGO;
+    [SerializeField] private bool audioON = true;
+    [SerializeField] private Image buttonImage;
+    [SerializeField] private Sprite audioOnIMG;
+    [SerializeField] private Sprite audioOffIMG;
+    [SerializeField] private GameObject cameraGO;
 
     private void Awake()
     {

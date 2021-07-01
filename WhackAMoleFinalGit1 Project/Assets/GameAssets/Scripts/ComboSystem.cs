@@ -7,12 +7,36 @@ using UnityEngine.Audio;
 
 public class ComboSystem : MonoBehaviour
 {
+
+    [SerializeField] private int comboAmount;
+    [SerializeField] private Text comboText;
+    [SerializeField] private Text comboTextSec;
+    [SerializeField] private StaminaBar staminaBar;
+
+    [SerializeField] private float _comboStartTime;
+    public float ComboStartTime { get => _comboStartTime; set => _comboStartTime = value; }
+    
+    [SerializeField] private float _comboTime = 0;
+    public float ComboTime { get => _comboTime; set => _comboTime = value; }
+
+    [SerializeField] private bool comboCanEnd = false;
+    [SerializeField] private MoleTimer timer;
+
+    //for audio
+    [SerializeField] private float audioProb;
+    [SerializeField] private AudioSource[] aSArray = new AudioSource[3];
+
+    [SerializeField] private int comboMultiplier = 0;
+
+
+
+    /*
     public int comboAmount;
     public Text comboText;
     public Text comboTextSec;
     public StaminaBar staminaBar;
-    public float comboStartTime = 3f;
-    public float comboTime = 0;
+    public float ComboStartTime = 3f;
+    public float ComboTime = 0;
     public bool comboCanEnd = false;
     public MoleTimer timer;
 
@@ -21,6 +45,15 @@ public class ComboSystem : MonoBehaviour
     public AudioSource[] aSArray = new AudioSource[3];
 
     public int comboMultiplier = 0;
+    */
+
+    private void Awake()
+    {
+        ComboStartTime = 3f;
+        ComboTime = 0f;
+
+
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -39,9 +72,9 @@ public class ComboSystem : MonoBehaviour
     public void AddCombo()
     {
 
-        
-
         comboAmount++;
+        //comboAmount = 100;
+
         if (comboAmount > 1)
         {
             if (comboCanEnd == false)
@@ -53,6 +86,7 @@ public class ComboSystem : MonoBehaviour
 
             if ((comboAmount-1) % 5 == 0)//check if number is multiple of a number using modulus operation
             {
+                Debug.Log("comboAmount reached 5!!!");
                 comboMultiplier++;
 
                 //playaudio
@@ -81,7 +115,7 @@ public class ComboSystem : MonoBehaviour
                 comboText.gameObject.GetComponent<Animator>().Play("ComboTextPop", 0, 0);
                 comboText.color = Color.yellow;
                 comboText.text = $"+{comboAmount - 1} COMBO!!";
-                comboTime = comboStartTime;
+                ComboTime = ComboStartTime;
 
             }
 
@@ -89,7 +123,7 @@ public class ComboSystem : MonoBehaviour
             comboText.gameObject.GetComponent<Animator>().Play("ComboTextPop", 0, 0);
             comboText.color = Color.yellow;
             comboText.text = $"+{comboAmount-1} COMBO!!";
-            comboTime = comboStartTime;
+            ComboTime = ComboStartTime;
             */
         }
 
@@ -115,7 +149,7 @@ public class ComboSystem : MonoBehaviour
     {
         comboAmount = 0;
         comboMultiplier = 0;
-        comboTime = 0;
+        ComboTime = 0;
 
         if (comboCanEnd == true)
         {
@@ -168,12 +202,12 @@ public class ComboSystem : MonoBehaviour
 
     public void ComboCountdown()
     {
-        if (comboTime > 0)
+        if (ComboTime > 0)
         {
 
-            comboTime -= Time.deltaTime;
+            ComboTime -= Time.deltaTime;
         }
-        else if (comboTime <= 0)
+        else if (ComboTime <= 0)
         {
             ResetCombo();
 

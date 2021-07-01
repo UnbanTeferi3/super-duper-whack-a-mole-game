@@ -5,9 +5,9 @@ using UnityEngine.Audio;
 
 public class AudioClipsManager : MonoBehaviour
 {
-    public GameObject[] audioSourceGOArray;
-    public AudioSource[] audioSourceArray;
-    public bool subscribeToOnFinishCountDown = false;
+    [SerializeField] private GameObject[] audioSourceGOArray;
+    [SerializeField] private AudioSource[] audioSourceArray;
+    [SerializeField] private bool subscribeToOnFinishCountDown = false;
 
 
     void OnEnable()
