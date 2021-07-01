@@ -30,8 +30,8 @@ public class MoleBehaviour : MonoBehaviour
 
     //for game difficulty
     public MoleTimer moleTimer;
-    public bool moleTimerReached60 = false;
-    public bool moleTimerReached80 = false;
+    public bool moleTimerReachedThreshold1 = false;
+    public bool moleTimerReachedThreshold2 = false;
 
     private void OnEnable()
     {
@@ -348,24 +348,24 @@ public class MoleBehaviour : MonoBehaviour
     
     public void IncreaseDifficultyWithTime()
     {
-        if (moleTimerReached60 == false)
+        if (moleTimerReachedThreshold1 == false)
         {
-            if (moleTimer.seconds >= 60)
+            if (moleTimer.seconds >= 80)
             {
                 IncreaseDifficulty();
-                moleTimerReached60 = true;
+                moleTimerReachedThreshold1 = true;
             }
 
             
 
         }
         
-        if (moleTimerReached80 == false)
+        if (moleTimerReachedThreshold2 == false)
         {
-            if (moleTimer.seconds >= 80)
+            if (moleTimer.seconds >= 100)
             {
                 IncreaseDifficulty();
-                moleTimerReached80 = true;
+                moleTimerReachedThreshold2 = true;
             }
 
         }
